@@ -4,8 +4,10 @@ Created on 17 July 2015
 
 @author: Charles West 
 
-Motion Notify v0.2 - uploads images and video to Google Drive and sends notification via email.
-and or maybe Dropbox.
+Motion Notify v0.2 - no longer uploads images and video to Google Drive.
+Sends notification via email using my isp -  this needs a config entry.
+
+and or maybe Dropbox in future.
 
 
 - - - - - - - - - -----------------------------------------------------------
