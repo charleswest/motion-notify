@@ -1,29 +1,15 @@
-2015-07-18 10:01:00,217 INFO logger regression test-info
-2015-07-18 10:01:28,694 INFO system active test
-2015-07-18 10:01:28,694 INFO Checking for presence via IP address
-2015-07-18 10:01:40,671 INFO IP inactive - nobody is home - system is active
-2015-07-18 10:01:40,674 INFO No IP addresses configured - skipping IP check
-2015-07-18 10:01:40,677 INFO Checking for presence via IP address
-2015-07-18 10:01:43,767 INFO Checking for presence via IP address
-2015-07-18 10:02:19,740 INFO IP inactive - nobody is home - system is active
-2015-07-18 10:02:19,744 INFO Checking for presence via IP address
-2015-07-18 10:10:44,346 INFO Test for Anybody_home
-2015-07-18 10:10:44,346 INFO Checking for presence via IP address
-2015-07-18 10:15:03,105 INFO logger regression test-info
-2015-07-18 10:15:14,019 INFO Test for Anybody_home
-2015-07-18 10:15:14,019 INFO Checking for presence via IP address
-2015-07-18 10:17:10,236 INFO Test for Anybody_home
-2015-07-18 10:17:10,236 INFO Checking for presence via IP address
-2015-07-18 10:17:13,368 INFO Active address  somebody home 192.168.1.106
-2015-07-18 10:26:20,474 INFO Test for Anybody_home
-2015-07-18 10:26:20,474 INFO Checking for presence via IP address
-2015-07-18 10:26:27,118 INFO Active address  somebody home192.168.1.106
-2015-07-18 10:27:19,470 INFO Test for Anybody_home
-2015-07-18 10:27:19,470 INFO Checking for presence via IP address
-2015-07-18 10:27:22,546 INFO Active address  somebody home192.168.1.106
-2015-07-18 10:27:54,339 INFO Test for Anybody_home
-2015-07-18 10:27:54,339 INFO Checking for presence via IP address
-2015-07-18 10:27:57,404 INFO Active address  somebody home192.168.1.106
-2015-07-18 10:28:47,661 INFO Test for Anybody_home
-2015-07-18 10:28:47,661 INFO Checking for presence via IP address
-2015-07-18 10:28:50,730 INFO Active address  somebody home192.168.1.106
+
+2015-07-19 15:50:55,937 INFO Checkingfor presence via MAC address
+2015-07-19 15:51:10,122 INFO Found a mobile mac somebody is home
+2015-07-19 15:51:10,128 INFO Checkingfor presence via MAC address
+2015-07-19 15:51:23,622 INFO no body found
+2015-07-19 15:59:17,640 INFO Checkingfor presence via MAC address
+2015-07-19 15:59:17,655 INFO sys.platform == 'linux':
+2015-07-19 15:59:26,622 INFO Found a mobile mac somebody is home rtn True
+2015-07-19 15:59:26,628 INFO Checkingfor presence via MAC address
+2015-07-19 15:59:26,641 INFO sys.platform == 'linux':
+2015-07-19 15:59:44,121 INFO nobody found - return False
+2015-07-19 16:02:32,121 INFO Checkingfor presence via MAC address
+2015-07-19 16:02:43,122 INFO Found a mobile mac somebody is home rtn True
+2015-07-19 16:03:15,694 INFO Checkingfor presence via MAC address
+2015-07-19 16:03:29,122 INFO Found a mobile mac somebody is home rtn True

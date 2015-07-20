@@ -4,7 +4,9 @@ provide logging services -- see main for invocation
 
 import sys
 import logging.handlers, traceback
-global db
+global logger
+logfile = 'notify.log'                     # '/var/tmp/motion-notify.log',
+   
 def logit(logfile):
     logger = logging.getLogger( 'MotionNotify' )
     hdlr = logging.handlers.RotatingFileHandler(logfile,
@@ -21,8 +23,8 @@ def logit(logfile):
     sys.excepthook = loggerExceptHook
 
     return(logger)
+logger = logit(logfile)
 if  __name__ == '__main__':
     print ' log module regression Test'
-    logfile = 'notify.log'                     # '/var/tmp/motion-notify.log',
-    logger = logit(logfile)                    # contructor 
+                 # contructor 
     logger.info("logger regression test-info") #  try other options if needed
