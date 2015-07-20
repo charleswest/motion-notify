@@ -17,11 +17,6 @@ import subprocess, time
 #import ConfigParser
 from cw_logs import logit,logger
 global logger
-def anybody_home(ipa):
-     global logger
-     return(anybody_home_ip(ipa) )   #  later add or mac
-
-
 def anybody_home_arp(network,presenceMacs):
      '''
      first ping the network to prime the arp cache
