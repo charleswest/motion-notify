@@ -1,30 +1,23 @@
 motion-notify
 =============
 
-Motion Notify is a notification system for Linux Motion providing upload to Google Drive and email notificaiton when you're not home.
+Motion Notify is a notification system for Linux Motion that sends  email notificaiton when you're not home.
 This carries out the following:
 
 -Sends an email when motion detection event starts
--Uploads images to Google Drive whilst an event is occuring
--Uploads a video to Google Drive when the event ends
+
 -Sends an email when the event ends with a link to the video
--Detects whether you're at home by looking for certain IP addresses on your local network and doesn't send alerts if you're home
+-Detects whether you're at home by looking for certain mac addresses on your local network and doesn't send alerts if you're home
 -Allows you to specify hours when you want to receive alerts even if you're at home
 
-Only receive alerts when you're not home
-The script detects whether you're at home by checking the network for the presence of certain devices by IP address or MAC address.
-It's highly recommended to use IP rather than MAC. If you choose to use MAC you will need to run the script (and Motion) as root as it uses ARP - this isn't recommended. IP detection uses ping so will run as a regular user.
-Specify either a comma separated list of IP addresses or a comma separated list of MAC addresses. IP addresses take priority so if you specify those, the MAC addresses will be ignored.
-Note that mobile phones often don't retain a constant connection to the wireless network even though they show that they are connected. They tend to sleep and then just reconnect occassionally to reduce battery life.
-This means that you might get a lot of false alarms if you just use a mobile phone IP address.
-Adding lots of devices that are only active when you're at home will reduce false alarms - try things like your Smart TV, desktop PC etc as well as any mobile phones.
-A later release will include improvements to not just check if a device is present but also to check if a device has been present in the last X number of minutes.
-It's highly recommended to configure your devices to use static IP's to prevent the IP addresses from changing.
+On a ubuntu system the arp command runs perfectly well as a regular user.  Mac addresses provide a much 
+more conistent means of identification in the presence of DHCP.  We do need a ping scan to prime the arp cache.
 
-Google Drive setup
-Login to Google Drive and create a folder where images and video will be upload to (the supplied config file uses "CCTV" as folder the name but you can change that if needed)
-Hint - if you're concerned about storing your password for your Google account in the clear in the config text file there is a solution. Create another Google account just for sending alerts.
-Create the folder in the Google Drive for the new account you created and then share that folder with your main Google account. That way you don't have to use the password for your main account.
+IP detection uses ping so will run as a regular user.
+Specify either a comma separated list of IP addresses or a comma separated list of MAC addresses. 
+
+Note that mobile phones often don't retain a constant connection to the wireless network even though they show that they are connected. They tend to sleep but they wake up if you ping them.
+It's highly recommended no to configure your devices to use static IP's since mac addresses do not  change.
 
 Installation
 There's no automated installation yet so this is the current process
