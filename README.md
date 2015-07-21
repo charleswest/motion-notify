@@ -39,7 +39,7 @@ sudo chmod 664 /var/tmp/motion-notify.log
 
 
 Edit the config file and enter the following:
--Google account details into the GMail section of the config file
+
 -Email address to send alerts to
 -The URL of the folder you created in your Google account (just copy and paste it from the browser). This will be sent in the alert emails so that you can click through to the folder
 -The name of the folder you created eg. CCTV
