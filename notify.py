@@ -26,6 +26,6 @@ if not os.path.exists(cfg_path):
 
     # motion-notify.cfg on Git   this will require config                
 
-MotionNotify(cfg_path,True) 
+MotionNotify(cfg_path,False)   #   use True to force an email 
 print('Start event triggered')
 logger.info('Motion Notify done\n')

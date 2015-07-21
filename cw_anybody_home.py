@@ -41,7 +41,7 @@ def anybody_home(config_file_path):
         ip_addresses = config.get( 'LAN', 'ip_addresses' ).split(', ')
      except ConfigParser.NoSectionError, ConfigParser.NoOptionError:
         pass
-     logger.info("All config options set")
+     logger.info("anybody home has  config options set")
      print 'ip     ',ip_addresses
      print 'macs   ',presenceMacs
      print 'network', network
@@ -72,12 +72,15 @@ def anybody_home_ip(ip_addresses):
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.STDOUT
                                     ).stdout.readlines()
-        for line in results:
-            #print line
-            if 'time' in line:
-                logger.info( 'Active IP address  somebody home  ' + str(address))
-                return True
-
+       
+  #      for line in results:
+        inactive = str(results).find('nreachable')
+        print '\ninactive', inactive ,  results
+        if not (inactive >0) :
+            logger.info( 'Active IP address  someobody home  ' + str(address))
+            return True
+        
+        
         
     logger.info( 'IP inactive - nobody is home ' )
     return False     #  anybody home  - nope
@@ -85,10 +88,12 @@ def anybody_home_ip(ip_addresses):
 if  __name__ == '__main__':
      
     print ' active module regression Test'
-    cfg_path = "C:\\Users\\charles\\Data\\cwtest\\motion\\notify\\motion-notify.cfg"   # motion-notify on Git                  
+    cfg_path = sys.argv[1]   # motion-notify on Git                  
     print  [anybody_home(cfg_path) , 'parms from config']
     
 ##    print  [anybody_home_ip(['192.168.1.127']), 'False - system 127 should fail']
 ##    print  [anybody_home_ip([]),              'False no ips in list\n\n']
-##    print  [anybody_home_ip(['192.168.1.106,192.168.1.119,192.168.1.110']), 'True - one good addr 110']
+     
+ #   ips = '192.168.1.106, 192.168.1.119, 192.168.1.114'.split(', ')
+ #   print  [anybody_home_ip(ips),'True - one good addr 114']
     

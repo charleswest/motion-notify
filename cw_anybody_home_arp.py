@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python2.7
 '''
 module to determine if system is active based on the arp cache
 Created on 17 July 2015
@@ -47,12 +47,12 @@ def anybody_home_arp(network,presenceMacs):
                     mac = a[1].replace('-',':')         # parse win32 arp output
                     #print mac
                     if mac in presenceMacs:
-                         logger.info('Found a mobile mac somebody is home rtn True')
+                         logger.info('win Found a mobile mac somebody is home rtn True')
                          return True                    #  we found a mac in our list 
                
      else:
           logger.info("sys.platform == 'linux':")
-
+          print 'looking for ', presenceMacs
           linefil = os.popen('arp -a')
           lines = linefil.read() 
           #print ' arp output ' , lines 
@@ -62,12 +62,12 @@ def anybody_home_arp(network,presenceMacs):
                a = lr.split()
                #print a[4], len(a)
                if len(a) == 7 and a[4] == '[ether]':
-                    mac = a[3] # linux  arp output
-                    #print mac
+                    mac = a[3] # linux  arp output 
+                    print mac , ' is mac from results' 
                     if mac in presenceMacs:
-                         logger.info('Found a mobile mac somebody is home rtn True')
+                         logger.info('Linus Found a mobile mac somebody is home rtn True')
                          return True                    #  we found a mac in our list 
-     logger.info('nobody found - return False')
+     logger.info('arp nobody found - return False')
      return False
 
 if  __name__ == '__main__':
