@@ -17,11 +17,6 @@ import subprocess, time
 #import ConfigParser
 from cw_logs import logit,logger
 global logger
-def anybody_home(ipa):
-     global logger
-     return(anybody_home_ip(ipa) )   #  later add or mac
-
-
 def anybody_home_arp(network,presenceMacs):
      '''
      first ping the network to prime the arp cache
@@ -38,10 +33,7 @@ def anybody_home_arp(network,presenceMacs):
      x = network[0]; y = network[1]
      print 'ping start', x , 'ping end',y
 
-##               ptuple = ['ping', '-c1', address]  #  ok on linux
-##               
-##          subprocess.Popen( ptuple)     
-##          time.sleep(.1)
+
      if sys.platform == 'win32':
           for adr in range (x,y):
                address = '192.168.1.'+str(adr)
@@ -60,11 +52,7 @@ def anybody_home_arp(network,presenceMacs):
                
      else:
           logger.info("sys.platform == 'linux':")
-  #        for adr in range (x,y):
-  #             address = '192.168.1.'+str(adr)
-  #             lines = os.popen('ping -c1 '+address)
-  #             time.sleep(.1)
-          
+
           linefil = os.popen('arp -a')
           lines = linefil.read() 
           #print ' arp output ' , lines 
