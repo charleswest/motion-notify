@@ -83,16 +83,7 @@ def MotionNotify(config_file_path,notify):
     
     ip_addresses = None
     
-    try:
-        presenceMacs = config.get( 'LAN', 'presence_macs' ).split( ',' )
-        network = config.get( 'LAN', 'network' )
-    except ConfigParser.NoSectionError, ConfigParser.NoOptionError:
-        pass
-    
-    try:
-        ip_addresses = config.get( 'LAN', 'ip_addresses' )
-    except ConfigParser.NoSectionError, ConfigParser.NoOptionError:
-        pass
+
     
     try:
         forceOnStart = config.getint( 'activate-system', 'force_on_start' )
@@ -102,7 +93,7 @@ def MotionNotify(config_file_path,notify):
     
     logger.info("All config options set")
         
-    def _send_email(self,msg):
+    def send_email(msg):
         '''Send an email using the SMTP server account.'''
         senddate=datetime.strftime(datetime.now(), '%Y-%m-%d')
         m="Date: %s\r\nFrom: %s <%s>\r\nTo: %s\r\nSubject: %s\r\nX-Mailer: My-Mail\r\n\r\n" % (senddate, from_name, sender, recipient, subject)
@@ -113,38 +104,40 @@ def MotionNotify(config_file_path,notify):
         server.sendmail(sender, recipient, m+msg)
         server.quit()    
     
-    def _system_active():
+    def system_active():
         global logger
         now = datetime.now()
-        system_active = True
         # Ignore presence if force_on specified
+        print now.hour , forceOnStart
         if forceOnStart and forceOnEnd and \
             now.hour >= forceOnStart and now.hour < forceOnEnd:
             logger.info( 'System is forced active at the current time - ignoring network presence' )
             return True
+        
         else:
-            if ip_addresses :
-                system_active = not anybody_home(ip_addresses)            
-                logger.info( 'Based on network presence should the email be sent %s', system_active )
-        return system_active
+            active = not anybody_home(config_file_path)            
+            logger.info( 'Based on network presence should the email be sent %s', active )
+            return active
     
     
 ##   Thats all she wrote ...     
-    if notify and _system_active() :
+    if  notify or system_active() :
         msg = event_started_message
-        _send_email(msg)
+        send_email(msg)
+        logger.info('msg sent')
+    else:
+        logger.info('somebody home')
 
 
 if __name__ == '__main__':
-    logger.info("Motion Notify script started")     
-    cfg_path = "C:\\Users\\charles\\Data\\cwtest\\motion\\notify\\motion-notify.cfg"   # motion-notify on Git                  
-    notify = True    
+    logger.info("Motion Notify test script started")     
+    cfg_path = 'notify.cfg'   # motion-notify on Git                  
+    notify = False    
     if not os.path.exists(cfg_path):
         print('Config file does not exist [%s]' % cfg_path)
     
     MotionNotify(cfg_path,notify) 
-    print('Start event triggered')
-    logger.info('main cw-notify done\n\n')
+    logger.info('main cw-notify done\n')
 
 
 

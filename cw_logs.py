@@ -1,3 +1,4 @@
+#!/usr/bin/python2.7
 '''
 provide logging services -- see main for invocation
 '''
@@ -5,7 +6,7 @@ provide logging services -- see main for invocation
 import sys
 import logging.handlers, traceback
 global logger
-logfile = 'notify.log'                     # '/var/tmp/motion-notify.log',
+logfile = '/var/tmp/motion-notify.log'
    
 def logit(logfile):
     logger = logging.getLogger( 'MotionNotify' )
