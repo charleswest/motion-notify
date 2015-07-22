@@ -17,7 +17,7 @@ IP detection uses ping so will run as a regular user.
 Specify either a comma separated list of IP addresses or a comma separated list of MAC addresses. 
 
 Note that mobile phones often don't retain a constant connection to the wireless network even though they show that they are connected. They tend to sleep but they wake up if you ping them.
-It's highly recommended no to configure your devices to use static IP's since mac addresses do not  change.
+It's highly recommended not to configure your devices to use static IP's since mac addresses do not  change.
 
 Installation
 There's no automated installation yet so this is the current process
@@ -41,8 +41,7 @@ sudo chmod 664 /var/tmp/motion-notify.log
 Edit the config file and enter the following:
 
 -Email address to send alerts to
--The URL of the folder you created in your Google account (just copy and paste it from the browser). This will be sent in the alert emails so that you can click through to the folder
--The name of the folder you created eg. CCTV
+
 -The hours that you always want to recieve email alerts even when you're home
 -Either enter IP addresses or MAC addresses (avoid using MAC addresses) which will be active when you're at home
 
