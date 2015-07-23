@@ -65,14 +65,14 @@ def anybody_home_arp(network,presenceMacs):
                     mac = a[3] # linux  arp output 
                     print mac , ' is mac from results' 
                     if mac in presenceMacs:
-                         logger.info('Linus Found a mobile mac somebody is home rtn True')
+                         logger.info('Linus Found a mobile mac '+mac+', somebody is home rtn True')
                          return True                    #  we found a mac in our list 
      logger.info('arp nobody found - return False')
      return False
 
 if  __name__ == '__main__':
-##    print ' arp anybody home  Test'
+    print ' arp anybody home  Test'
     print [anybody_home_arp([100,114],['00:25:9c:53:01:2a','00:03:4f:08:a1:29','fc:x2:de:55:d8:ec']), 'True ']
     print [anybody_home_arp([100,114],['00:95:9z:53:01:2z']), 'False no such arp']
-
-##    print  [anybody_home('192.168.1.114') , 'True  - anybody home DSC']    
+ 
+    
