@@ -15,9 +15,12 @@ if __name__ == '__main__':
         logger.info('no config-file-path')
         print('''Motion Notify - sends email 
                 when network presence indicates nobody is home\n
-                Usage: notfy.py {config-file-path}
+                Usage: notfy.py {config-file-path[,forceMail]}
                 ''')
     cfg_path = sys.argv[1]
+    forceMail = False
+    if len(sys.argv) == 3:
+	forceMail = sys.argv[2]     # optional last parm force send mail 
     print 'cfg path', cfg_path
 if not os.path.exists(cfg_path):
     logger.info ('Config file does not exist [%s]' % cfg_path)
@@ -26,6 +29,6 @@ if not os.path.exists(cfg_path):
 
     # motion-notify.cfg on Git   this will require config                
 
-MotionNotify(cfg_path,False)   #   use True to force an email 
+MotionNotify(cfg_path,forceMail)   #   use True to force an email 
 print('Start event triggered')
 logger.info('Motion Notify done\n')
