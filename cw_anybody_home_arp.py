@@ -14,10 +14,10 @@ we know belong to portable devices.
 #import os.path
 import sys,re,os
 import subprocess, time
-#import ConfigParser
-from cw_logs import logit,logger
-global logger
-def anybody_home_arp(network,presenceMacs):
+import ConfigParser
+from cw_logs import logit 
+#global logger
+def anybody_home_arp(network,presenceMacs,logger):
      '''
      first ping the network to prime the arp cache
      next  check if any network address has an arp we like
@@ -27,8 +27,10 @@ def anybody_home_arp(network,presenceMacs):
      examples   fC:c2:de:55:d8:ec   good arp  00:03:4f:08:a1:29  dsc
      note -- lowcase hex 
      '''
+     #global logger
      if not network or not presenceMacs:
           return False
+
      logger.info("Checkingfor presence via MAC address")
      x = network[0]; y = network[1]
      print 'ping start', x , 'ping end',y
@@ -65,14 +67,21 @@ def anybody_home_arp(network,presenceMacs):
                     mac = a[3] # linux  arp output 
                     print mac , ' is mac from results' 
                     if mac in presenceMacs:
-                         logger.info('Linus Found a mobile mac '+mac+', somebody is home rtn True')
+                         logger.info('Linus Found a mobile mac somebody is home rtn True')
                          return True                    #  we found a mac in our list 
      logger.info('arp nobody found - return False')
      return False
 
 if  __name__ == '__main__':
-    print ' arp anybody home  Test'
-    print [anybody_home_arp([100,114],['00:25:9c:53:01:2a','00:03:4f:08:a1:29','fc:x2:de:55:d8:ec']), 'True ']
-    print [anybody_home_arp([100,114],['00:95:9z:53:01:2z']), 'False no such arp']
- 
-    
+##    print ' arp anybody home  Test'
+    if sys.platform == 'win32':
+        cfg_path = 'motion-notify.cfg'
+        print 'windows' , cfg_path
+    else:    
+        cfg_path = sys.argv[1]            # notify.cfg
+    logger = logit(cfg_path)    
+    print [anybody_home_arp([100,114]
+     ,['00:25:9c:53:01:2a','00:03:4f:08:a1:29','fc:x2:de:55:d8:ec'],logger), 'True ']
+    print [anybody_home_arp([100,114],['00:95:9z:53:01:2z'],logger), 'False no such arp']
+
+##    print  [anybody_home('192.168.1.114') , 'True  - anybody home DSC']    
