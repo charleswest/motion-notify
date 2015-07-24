@@ -13,8 +13,8 @@ from cw_logs import logit
 from cw_anybody_home_arp import anybody_home_arp 
 def anybody_home(config_file_path,logger):
      '''
-     presenceMacs are a list of macs
-     x1:x2:x2:x4:x5:x6,y1:y2:y3:y4:y5:y6  etc  see main for real
+     presenceMacs are a list of comma, space seperated macs
+     x1:x2:x2:x4:x5:x6, y1:y2:y3:y4:y5:y6  etc  see main for real
      examples   fC:c2:de:55:d8:ec   good arp  00:03:4f:08:a1:29  dsc
      note -- lowcase hex
      If we find a mac in the arp cache we ping it to confirm presence of the device
@@ -34,7 +34,7 @@ def anybody_home(config_file_path,logger):
         pass
      logger.info("anybody home has  config options set")
      
-     presenceMacs = 'FC:C2:DE:55:D8:EC, FC:C2:DE:C6:DC:76, F0:7B:CB:8A:A7:7A'.lower().split(', ') 
+     #presenceMacs = 'FC:C2:DE:55:D8:EC, FC:C2:DE:C6:DC:76, F0:7B:CB:8A:A7:7A'.lower().split(', ') 
  
      print 'macs   ',presenceMacs
      if  not presenceMacs:

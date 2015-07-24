@@ -22,7 +22,6 @@ Jeremy Blythe (http://jeremyblythe.blogspot.com) and
 pypymotion (https://github.com/7AC/pypymotion) by Wayne Dyck
 and on Motion-Notify by  Andrew Dean
 '''
-
 # This file is part of Motion Notify.
 #
 # Motion Notify is free software: you can redistribute it and/or modify
@@ -45,21 +44,24 @@ import os.path
 import sys
 import subprocess, time
 import ConfigParser
-from cw_logs import logit,logger
-global logger
+from cw_logs import logit 
+#global logger
 from cw_anybody_home import anybody_home
 def MotionNotify(config_file_path,notify):
-    global logger
-    logger.info("Loading config")
+#    global logger
+    #logger = logit(config_file_path)
+    logger.info("Loading config motion Notify 1")
     # Load config
     config = ConfigParser.ConfigParser()
     config.read(config_file_path)
-    logger.info("Config file read")
+    logger.info("Config file read MN")
     # mail account credentials
     username = config.get('mail', 'user')
     password = config.get('mail', 'password')
     from_name = config.get('mail', 'name')
     sender = config.get('mail', 'sender')
+    mailServ = config.get('mail','server')
+    smtp =     config.get('mail', 'port')
     print 'config read'
     # Recipient email address (could be same as from_addr)
     recipient = config.get('mail', 'recipient')
@@ -98,14 +100,16 @@ def MotionNotify(config_file_path,notify):
         senddate=datetime.strftime(datetime.now(), '%Y-%m-%d')
         m="Date: %s\r\nFrom: %s <%s>\r\nTo: %s\r\nSubject: %s\r\nX-Mailer: My-Mail\r\n\r\n" % (senddate, from_name, sender, recipient, subject)
         print username, sender, password
-        server = smtplib.SMTP('smtp.westrc.com:2525')
+ #       server = smtplib.SMTP('smtp.westrc.com:2525')
+        logger.info( 'sending mail  via '+mailServ+':'+smtp)
+        server = smtplib.SMTP(mailServ+':'+smtp)
         server.starttls()
         server.login(sender, password)
         server.sendmail(sender, recipient, m+msg)
         server.quit()    
     
     def system_active():
-        global logger
+ #       global logger
         now = datetime.now()
         # Ignore presence if force_on specified
         print now.hour , forceOnStart
@@ -115,7 +119,7 @@ def MotionNotify(config_file_path,notify):
             return True
         
         else:
-            active = not anybody_home(config_file_path)            
+            active = not anybody_home(config_file_path,logger)            
             logger.info( 'Based on network presence should the email be sent %s', active )
             return active
     
@@ -130,12 +134,13 @@ def MotionNotify(config_file_path,notify):
 
 
 if __name__ == '__main__':
+    
+    cfg_path = 'notify.cfg'   # motion-notify on Git
+    logger = logit(cfg_path)
     logger.info("Motion Notify test script started")     
-    cfg_path = 'notify.cfg'   # motion-notify on Git                  
-    notify = False    
+    notify = True    
     if not os.path.exists(cfg_path):
         print('Config file does not exist [%s]' % cfg_path)
-    
     MotionNotify(cfg_path,notify) 
     logger.info('main cw-notify done\n')
 
