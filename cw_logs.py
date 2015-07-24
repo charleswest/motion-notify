@@ -2,16 +2,13 @@
 '''
 provide logging services -- see main for invocation
 '''
+
 import sys
 import logging.handlers, traceback
-import ConfigParser
 global logger
-def logit(cfg_path):
-    config = ConfigParser.ConfigParser()
-    config.read(cfg_path)
-    logfile  = config.get( 'log', 'logfile' )
-
-    
+logfile = '/var/tmp/motion-notify.log'
+   
+def logit(logfile):
     logger = logging.getLogger( 'MotionNotify' )
     hdlr = logging.handlers.RotatingFileHandler(logfile,
                                  maxBytes=1048576,
@@ -25,15 +22,10 @@ def logit(cfg_path):
         logger.error( traceback.format_exception( t, v, tb ) )
 
     sys.excepthook = loggerExceptHook
-    logger.info('Log file initialized to '+ logfile) 
+
     return(logger)
+logger = logit(logfile)
 if  __name__ == '__main__':
     print ' log module regression Test'
-    cfg_path = ' '
-    if sys.platform == 'win32':
-        cfg_path = 'motion-notify.cfg'
-        print 'windows' , cfg_path
-    else:    
-        cfg_path = sys.argv[1]            # notify.cfg
-    logger = logit(cfg_path)
+                 # contructor 
     logger.info("logger regression test-info") #  try other options if needed
