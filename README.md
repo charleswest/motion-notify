@@ -10,8 +10,7 @@ This carries out the following:
 -Detects whether you're at home by looking for certain mac addresses on your local network and doesn't send alerts if you're home
 -Allows you to specify hours when you want to receive alerts even if you're at home
 
-On a ubuntu system the arp command runs perfectly well as a regular user.  Mac addresses provide a much 
-more conistent means of identification in the presence of DHCP.  We do need a ping scan to prime the arp cache.
+On a ubuntu system the arp command runs perfectly well as a regular user.  Mac addresses provide a much more conistent means of identification in the presence of DHCP.  We do need a ping scan to prime the arp cache.
 
 IP detection uses ping so will run as a regular user.
 Specify either a comma separated list of IP addresses or a comma separated list of MAC addresses. 
