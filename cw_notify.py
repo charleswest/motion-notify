@@ -97,7 +97,7 @@ def MotionNotify(config_file_path,notify):
         '''Send an email using the SMTP server account.'''
         senddate=datetime.strftime(datetime.now(), '%Y-%m-%d')
         m="Date: %s\r\nFrom: %s <%s>\r\nTo: %s\r\nSubject: %s\r\nX-Mailer: My-Mail\r\n\r\n" % (senddate, from_name, sender, recipient, subject)
-        print username, sender, password
+        print username, sender
  #       server = smtplib.SMTP('smtp.westrc.com:2525')
         logger.info( 'sending mail  via '+mailServ+':'+smtp)
         server = smtplib.SMTP(mailServ+':'+smtp)
@@ -132,8 +132,13 @@ def MotionNotify(config_file_path,notify):
 
 
 if __name__ == '__main__':
-    
-    cfg_path = 'motion-notify.cfg'   # motion-notify on Git
+    if sys.platform == 'win32':
+        cwcfg = r'/Users/charles/data/cwtest/motion/notify/motion-notify.cfg'
+        print cwcfg
+        sys.argv = ['cw_notify.py', cwcfg, 1]
+        logger = logit('notify.log')
+       
+    cfg_path = sys.argv[1]   # motion-notify on Git
     notify = True    
     if not os.path.exists(cfg_path):
         print('Config file does not exist [%s]' % cfg_path)
