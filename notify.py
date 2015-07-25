@@ -15,8 +15,7 @@ if __name__ == '__main__':
         cwcfg = r'/Users/charles/data/cwtest/motion/notify/motion-notify.cfg'
         print cwcfg
         sys.argv = ['notify.py', cwcfg, 1]
-        logger = logit('notify.log')
-    logger.info("Motion Notify script started")
+        
     if len(sys.argv) < 2:
         logger.info('no config-file-path')
         print('''Motion Notify - sends email 
@@ -30,11 +29,7 @@ if __name__ == '__main__':
     print 'cfg path', cfg_path
 if not os.path.exists(cfg_path):
     logger.info ('Config file does not exist [%s]' % cfg_path)
-    
-
-
-    # motion-notify.cfg on Git   this will require config                
-
+ 
 MotionNotify(cfg_path,forceMail)   #   use True to force an email 
 print('Start event triggered')
 logger.info('Motion Notify done\n')
