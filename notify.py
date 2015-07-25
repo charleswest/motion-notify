@@ -12,7 +12,9 @@ from cw_notify import MotionNotify
 if __name__ == '__main__':
 
     if sys.platform == 'win32':
-        sys.argv = ['notify.py', 'motion-notify.cfg', 1]
+        cwcfg = r'/Users/charles/data/cwtest/motion/notify/motion-notify.cfg'
+        print cwcfg
+        sys.argv = ['notify.py', cwcfg, 1]
         logger = logit('notify.log')
     logger.info("Motion Notify script started")
     if len(sys.argv) < 2:
