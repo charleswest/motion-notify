@@ -5,12 +5,7 @@ provide logging services -- see main for invocation
 
 import sys
 import logging.handlers, traceback
-global logger
 print sys.platform
-if sys.platform == 'win32':
-    logfile= 'notify.log'
-else:
-    logfile = '/var/tmp/motion-notify.log'
    
 def logit(logfile):
     logger = logging.getLogger( 'MotionNotify' )
@@ -28,8 +23,14 @@ def logit(logfile):
     sys.excepthook = loggerExceptHook
 
     return(logger)
-logger = logit(logfile)
+
 if  __name__ == '__main__':
+
+    if sys.platform == 'win32':
+        logfile= 'notify.log'
+    else:
+        logfile = '/var/tmp/notify.log'
     print ' log module regression Test'
                  # contructor 
+    logger = logit(logfile)
     logger.info("logger regression test-info") #  try other options if needed

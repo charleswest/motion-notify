@@ -140,10 +140,11 @@ if __name__ == '__main__':
        
     cfg_path = sys.argv[1]   # motion-notify on Git
     notify = True    
+
     if not os.path.exists(cfg_path):
         print('Config file does not exist [%s]' % cfg_path)
     MotionNotify(cfg_path,notify) 
-    logger.info('main cw-notify done\n')
+  #  logger.info('main cw-notify done\n')
 
 
 

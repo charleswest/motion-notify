@@ -10,7 +10,6 @@ import sys,re,os
 import subprocess, time
 import ConfigParser
 from cw_logs import logit 
-from anybody_home_arp import anybody_home_arp 
 def anybody_home(config_file_path,logger):
      '''
      presenceMacs are a list of comma, space seperated macs

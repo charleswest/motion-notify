@@ -6,7 +6,7 @@ Created on 20 July 2015
 '''
 import os.path
 import sys
-from cw_logs import logit,logger
+from cw_logs import logit
 global logger
 from cw_notify import MotionNotify
 if __name__ == '__main__':
@@ -17,7 +17,7 @@ if __name__ == '__main__':
         sys.argv = ['notify.py', cwcfg, 1]
         
     if len(sys.argv) < 2:
-        logger.info('no config-file-path')
+        print ('no config-file-path')
         print('''Motion Notify - sends email 
                 when network presence indicates nobody is home\n
                 Usage: notfy.py {config-file-path[,forceMail]}
@@ -28,8 +28,8 @@ if __name__ == '__main__':
         forceMail = sys.argv[2]     # optional last parm force send mail 
     print 'cfg path', cfg_path
 if not os.path.exists(cfg_path):
-    logger.info ('Config file does not exist [%s]' % cfg_path)
+    print ('Config file does not exist [%s]' % cfg_path)
  
 MotionNotify(cfg_path,forceMail)   #   use True to force an email 
 print('Start event triggered')
-logger.info('Motion Notify done\n')
+print ('Motion Notify done\n')
