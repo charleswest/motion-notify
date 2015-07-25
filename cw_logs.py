@@ -6,11 +6,8 @@ provide logging services -- see main for invocation
 import sys
 import logging.handlers, traceback
 global logger
-print sys.platform
-if  not sys.platform == 'win32':
-    logfile = '/var/tmp/motion-notify.log'
-else:
-    logfile = 'notify.log'
+logfile = '/var/tmp/motion-notify.log'
+   
 def logit(logfile):
     logger = logging.getLogger( 'MotionNotify' )
     hdlr = logging.handlers.RotatingFileHandler(logfile,

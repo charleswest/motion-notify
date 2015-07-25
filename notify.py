@@ -10,14 +10,6 @@ from cw_logs import logit,logger
 global logger
 from cw_notify import MotionNotify
 if __name__ == '__main__':
-    global logger
-    if sys.platform == 'win32':
-        cfg_path = 'notify.cfg'
-        print 'windows' , cfg_path
-        sys.argv = ['notify.py','notify.cfg', 1]
-      
-    
-    logger = logit(cfg_path)
     logger.info("Motion Notify script started")
     if len(sys.argv) < 2:
         logger.info('no config-file-path')
@@ -28,11 +20,14 @@ if __name__ == '__main__':
     cfg_path = sys.argv[1]
     forceMail = False
     if len(sys.argv) == 3:
-        forceMail = sys.argv[2]     # optional last parm force send mail 
-        print 'cfg path', cfg_path
-        
+	forceMail = sys.argv[2]     # optional last parm force send mail 
+    print 'cfg path', cfg_path
 if not os.path.exists(cfg_path):
-    logger.info ('Config file does not exist [%s]' % cfg_path)          
+    logger.info ('Config file does not exist [%s]' % cfg_path)
+    
+
+
+    # motion-notify.cfg on Git   this will require config                
 
 MotionNotify(cfg_path,forceMail)   #   use True to force an email 
 print('Start event triggered')
