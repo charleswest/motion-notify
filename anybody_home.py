@@ -10,7 +10,7 @@ import sys,re,os
 import subprocess, time
 import ConfigParser
 from cw_logs import logit 
-from cw_anybody_home_arp import anybody_home_arp 
+from anybody_home_arp import anybody_home_arp 
 def anybody_home(config_file_path,logger):
      '''
      presenceMacs are a list of comma, space seperated macs
@@ -58,7 +58,7 @@ def anybody_home(config_file_path,logger):
      else:
           logger.info("sys.platform == 'linux':")
           print 'looking for ', presenceMacs
-          linefil = os.popen('arp -a')
+          linefil = os.popen('arp ')
           lines = linefil.read() 
           #print ' arp output ' , lines 
           lines = lines.split('\n')              
@@ -66,12 +66,14 @@ def anybody_home(config_file_path,logger):
                #print i,lr
                a = lr.split()
                #print a[4], len(a)
-               if len(a) == 7 and a[4] == '[ether]':
-                    mac = a[3] # linux  arp output 
+               if len(a) == 5 and a[1] == 'ether':
+                    mac = a[2] # linux  arp output
+                    logger.info(mac +'in arp cache') 
                     print mac , ' is mac from results' 
                     if mac in presenceMacs:
                          logger.info('Linus Found a mobile mac somebody is home rtn True')
-                         return (anybody_home_ip(ipaddress))   #  we found a mac in our list 
+                         ipaddress = a[0]
+                         return (anybody_home_ip(ipaddress,logger))   #  we found a mac in our list 
      logger.info('arp nobody found - return False')
      return False
 

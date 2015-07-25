@@ -46,7 +46,7 @@ import subprocess, time
 import ConfigParser
 from cw_logs import logit 
 #global logger
-from cw_anybody_home import anybody_home
+from anybody_home import anybody_home
 def MotionNotify(config_file_path,notify):
     config = ConfigParser.ConfigParser()
     config.read(config_file_path)
