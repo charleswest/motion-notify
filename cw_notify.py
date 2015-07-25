@@ -49,8 +49,8 @@ from cw_logs import logit
 from cw_anybody_home import anybody_home
 def MotionNotify(config_file_path,notify):
 #    global logger
-    #logger = logit(config_file_path)
-    logger.info("Loading config motion Notify 1")
+    logger = logit(config_file_path)
+#    logger.info("Loading config motion Notify 1")
     # Load config
     config = ConfigParser.ConfigParser()
     config.read(config_file_path)
@@ -99,7 +99,7 @@ def MotionNotify(config_file_path,notify):
         '''Send an email using the SMTP server account.'''
         senddate=datetime.strftime(datetime.now(), '%Y-%m-%d')
         m="Date: %s\r\nFrom: %s <%s>\r\nTo: %s\r\nSubject: %s\r\nX-Mailer: My-Mail\r\n\r\n" % (senddate, from_name, sender, recipient, subject)
-        print username, sender, password
+        print username, sender
  #       server = smtplib.SMTP('smtp.westrc.com:2525')
         logger.info( 'sending mail  via '+mailServ+':'+smtp)
         server = smtplib.SMTP(mailServ+':'+smtp)

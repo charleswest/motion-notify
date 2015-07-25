@@ -104,7 +104,7 @@ def anybody_home_ip(address,logger):
 if  __name__ == '__main__':
     global logger
     if sys.platform == 'win32':
-        cfg_path = 'motion-notify.cfg'
+        cfg_path = 'notify.cfg'
         print 'windows' , cfg_path
     else:    
         cfg_path = sys.argv[1]            # notify.cfg 
