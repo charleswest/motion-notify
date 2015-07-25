@@ -10,6 +10,10 @@ from cw_logs import logit,logger
 global logger
 from cw_notify import MotionNotify
 if __name__ == '__main__':
+
+    if sys.platform == 'win32':
+        sys.argv = ['notify.py', 'motion-notify.cfg', 1]
+        logger = logit('notify.log')
     logger.info("Motion Notify script started")
     if len(sys.argv) < 2:
         logger.info('no config-file-path')
@@ -20,7 +24,7 @@ if __name__ == '__main__':
     cfg_path = sys.argv[1]
     forceMail = False
     if len(sys.argv) == 3:
-	forceMail = sys.argv[2]     # optional last parm force send mail 
+        forceMail = sys.argv[2]     # optional last parm force send mail 
     print 'cfg path', cfg_path
 if not os.path.exists(cfg_path):
     logger.info ('Config file does not exist [%s]' % cfg_path)

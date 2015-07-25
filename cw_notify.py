@@ -48,13 +48,11 @@ from cw_logs import logit
 #global logger
 from cw_anybody_home import anybody_home
 def MotionNotify(config_file_path,notify):
-#    global logger
-    #logger = logit(config_file_path)
-    logger.info("Loading config motion Notify 1")
-    # Load config
     config = ConfigParser.ConfigParser()
     config.read(config_file_path)
-    logger.info("Config file read MN")
+    logfile = config.get('log', 'logfile')
+    logger = logit(logfile)
+    logger.info("Config file read - log initialized ")
     # mail account credentials
     username = config.get('mail', 'user')
     password = config.get('mail', 'password')
@@ -135,9 +133,7 @@ def MotionNotify(config_file_path,notify):
 
 if __name__ == '__main__':
     
-    cfg_path = 'notify.cfg'   # motion-notify on Git
-    logger = logit(cfg_path)
-    logger.info("Motion Notify test script started")     
+    cfg_path = 'motion-notify.cfg'   # motion-notify on Git
     notify = True    
     if not os.path.exists(cfg_path):
         print('Config file does not exist [%s]' % cfg_path)
