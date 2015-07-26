@@ -18,8 +18,8 @@ Note that mobile phones often don't retain a constant connection to the motion s
 Installation
 There's no automated installation yet so this is the current process  --  
 
-Create a directory:       #    this may not be best practice for linux -- 
-mkdir notify              #   this will be in your home directory 
+Create a directory:                 #    this may not be best practice for linux -- 
+mkdir notify                        #   this will be in your home directory 
 cd to notify
 git clone https://github.com/charleswest/motion-notify.git
 
@@ -27,6 +27,7 @@ Create the log file and set the permissions
 sudo touch /var/tmp/notify.log
 
 sudo chown motion.motion /var/tmp/notify.log
+
 sudo chmod 664 /var/tmp/notify.log
 
 Edit the config file and enter the following:
