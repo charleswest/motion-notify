@@ -25,10 +25,10 @@ def anybody_home(config_file_path,logger):
      presenceMacs = []
      try:
         presenceMacs = config.get( 'LAN', 'presence_macs' ).lower().split(', ')
-        net  = config.get( 'LAN', 'network' )
-        x,y = net.split(',')
-        x = int(x); y = int(y)
-        network = [x,y]
+#        net  = config.get( 'LAN', 'network' )
+#        x,y = net.split(',')
+#        x = int(x); y = int(y)
+#        network = [x,y]
      except ConfigParser.NoSectionError, ConfigParser.NoOptionError:
         pass
      logger.info("anybody home has  config options set")
