@@ -19,7 +19,8 @@ Installation
 There's no automated installation yet so this is the current process  --  
 
 in your home directory run:
-git clone https://github.com/charleswest/motion-notify.git notify
+
+        git clone https://github.com/charleswest/motion-notify.git notify
 
    This will create a notify directory will all     permisions set up to run.
    You may need to run apt-get install git in order to have the clone work
@@ -37,10 +38,15 @@ nano motion-notify.cfg     to edit  your name and pasword
 -Enter MAC addresses that will be active when you're at home
    
 you should now be able to run each of the scripts from the command line
+
 ./cw_logs.py   ...   will create logger and write a test line
+
 ./notify.py  notify.cfg  1    will send mail if your cfg is ok
+
 look in /var/tmp/notify.log   for problems
+
 as soon as everything seems ok run:
+
 git status       to see what you have changed 
 
 git add          for everything you would like to keep    --  just notify.cfg for now
@@ -67,11 +73,10 @@ git merge newstuff    -- will update master with your changes
 
 git branch -d newstuff  will discard the sandbox
 
-If all that is just too much  
-  rm -rf notify    --  will kill the whole shebang and you can start over fresh at git clone 
-when this works for you  add the command to the motion event you
-wish to track -- same as you just typed it on the command line.
+If all that is just too much
 
+     rm -rf notify   --  will kill the whole shebang and you can start over fresh at git clone
+  
 Create the entry in the Motion conf file to trigger the motion-notify script when there is an alert
 This is easily done from the motion control panel using your browser.  
 typical entry will be
