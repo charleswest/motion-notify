@@ -55,24 +55,29 @@ def anybody_home(config_file_path,logger):
                                              #  ping it to see for sure 
                
      else:
-          logger.info("sys.platform == 'linux':")
+          logger.info("sys.platform is" + sys.platform)
           print 'looking for ', presenceMacs
-          linefil = os.popen('arp ')
+          linefil = os.popen('ip n show ')
           lines = linefil.read() 
-          #print ' arp output ' , lines 
+         
+          print ' arp cache output ' , lines 
           lines = lines.split('\n')              
           for i,lr in enumerate(lines):
                #print i,lr
                a = lr.split()
                #print a[4], len(a)
-               if len(a) == 5 and a[1] == 'ether':
-                    mac = a[2] # linux  arp output
+               if len(a) == 6 :
+                    mac = a[4] # linux  ip show
                     logger.info(mac +'in arp cache') 
                     print mac , ' is mac from results' 
                     if mac in presenceMacs:
                          logger.info('Linus Found a mobile mac somebody is home rtn True')
                          ipaddress = a[0]
-                         return (anybody_home_ip(ipaddress,logger))   #  we found a mac in our list 
+                         if a[5] == 'REACHABLE':
+                             logger.info( 'found Reachable')
+                             return True
+                         else:
+                             return (anybody_home_ip(ipaddress,logger))   #  we found a mac in our list 
      logger.info('arp nobody found - return False')
      return False
 
@@ -109,7 +114,7 @@ if  __name__ == '__main__':
         print 'windows' , cfg_path
     else:    
         cfg_path = sys.argv[1]            # notify.cfg 
-    print ' active module regression Test'
+    print ' active module regression Test ArpFix'
     logger = logit(cfg_path)
     print  [anybody_home(cfg_path,logger) , 'parms from config']
 
