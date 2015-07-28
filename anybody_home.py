@@ -74,7 +74,7 @@ def anybody_home(config_file_path,logger):
                          logger.info('Linus Found a mobile mac somebody is home rtn True')
                          ipaddress = a[0]
                          if a[5] == 'REACHABLE':
-                             logger.info( 'found Reachable')
+                             logger.info( 'found Reachable'+a[0])
                              return True
                          else:
                              return (anybody_home_ip(ipaddress,logger))   #  we found a mac in our list 
