@@ -55,7 +55,7 @@ def anybody_home(config_file_path,logger):
                                              #  ping it to see for sure 
                
      else:
-          logger.info("sys.platform is" + sys.platform)
+          logger.info("sys.platform is " + sys.platform)
           print 'looking for ', presenceMacs
           linefil = os.popen('ip n show ')
           lines = linefil.read() 
@@ -68,13 +68,13 @@ def anybody_home(config_file_path,logger):
                #print a[4], len(a)
                if len(a) == 6 :
                     mac = a[4] # linux  ip show
-                    logger.info(mac +'in arp cache') 
+                    logger.info(mac +' in arp cache') 
                     print mac , ' is mac from results' 
                     if mac in presenceMacs:
                          logger.info('Linus Found a mobile mac somebody is home rtn True')
                          ipaddress = a[0]
                          if a[5] == 'REACHABLE':
-                             logger.info( 'found Reachable'+a[0])
+                             logger.info( 'found Reachable '+a[0])
                              return True
                          else:
                              return (anybody_home_ip(ipaddress,logger))   #  we found a mac in our list 
