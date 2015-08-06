@@ -92,11 +92,13 @@ def MotionNotify(config_file_path,notify):
         pass
     
     logger.info("All config options set")
-        
+    #Date: Thu, 06 Aug 2015 14:14:14 -0700   good date
+    #Date: 2015-08-06                         fkd date+
     def send_email(msg):
         '''Send an email using the SMTP server account.'''
-        senddate=datetime.strftime(datetime.now(), '%Y-%m-%d')
-        m="Date: %s\r\nFrom: %s <%s>\r\nTo: %s\r\nSubject: %s\r\nX-Mailer: My-Mail\r\n\r\n" % (senddate, from_name, sender, recipient, subject)
+        senddate=datetime.strftime(datetime.now(), '%a, %d %b %Y %X')
+        m=       "Date: %s\r\nFrom: %s <%s>\r\nTo: %s\r\nSubject: %s\r\nX-Mailer: My-Mail\r\n\r\n"  \
+           % (senddate,   from_name,  sender, recipient, subject)
         print username, sender
  #       server = smtplib.SMTP('smtp.westrc.com:2525')
         logger.info( 'sending mail  via '+mailServ+':'+smtp)

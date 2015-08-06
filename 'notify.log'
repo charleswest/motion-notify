@@ -1,0 +1,8 @@
+2015-08-06 15:26:11,611 INFO Config file read - log initialized 
+2015-08-06 15:26:11,615 INFO All config options set
+2015-08-06 15:26:11,621 INFO sending mail  via smtp.westrc.com:2525
+2015-08-06 15:26:13,717 INFO msg sent
+2015-08-06 15:51:36,493 INFO Config file read - log initialized 
+2015-08-06 15:51:36,497 INFO All config options set
+2015-08-06 15:51:36,505 INFO sending mail  via smtp.westrc.com:2525
+2015-08-06 15:51:38,321 INFO msg sent
