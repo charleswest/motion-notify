@@ -1,8 +1,5 @@
 #!/usr/bin/python2.7  
-
-
-q
-''
+'''
 This is a wrapper that passes ARGS to MotionNotify
 Created on 20 July 2015
 @author: Charles West
