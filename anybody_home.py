@@ -109,13 +109,14 @@ def anybody_home_ip(address,logger):
 
 if  __name__ == '__main__':
     global logger
+    logfile = 'notify.log'
     if sys.platform == 'win32':
         cfg_path = 'motion-notify.cfg'
         print 'windows' , cfg_path
     else:    
         cfg_path = sys.argv[1]            # notify.cfg 
     print ' active module regression Test ArpFix'
-    logger = logit(cfg_path)
+    logger = logit(logfile)
     print  [anybody_home(cfg_path,logger) , 'parms from config']
 
     
