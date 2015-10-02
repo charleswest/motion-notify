@@ -220,3 +220,4 @@ pip-log.txt
 *.log
 junk
 OneNote Table Of Contents.onetoc2
+'notify.log'
