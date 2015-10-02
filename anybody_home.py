@@ -115,7 +115,7 @@ if  __name__ == '__main__':
     else:    
         cfg_path = sys.argv[1]            # notify.cfg 
     print ' active module regression Test ArpFix'
-    logger = logit(cfg_path)
+    logger = logit('notify.log')
     print  [anybody_home(cfg_path,logger) , 'parms from config']
 
     
